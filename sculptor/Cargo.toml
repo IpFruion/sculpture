@@ -1,0 +1,8 @@
+[package]
+name = "sculptor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sculpture = { path = "../sculpture/" }
+clap = { version = "4.0.32", features = ["derive"] }
