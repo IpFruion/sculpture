@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/IpFruion/sculpture/tree/main/res/logo.png?raw=true" alt="Sculptor Logo"/>
+  <img src="https://raw.githubusercontent.com/IpFruion/sculpture/main/res/logo.png" alt="Sculptor Logo"/>
 </p>
 
 # Welcome to Sculpture
