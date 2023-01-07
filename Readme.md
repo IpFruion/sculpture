@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/IpFruion/sculpture/main/res/logo.png" width="200" height="200" alt="Sculptor Logo"/>
 </p>
 
-# Welcome to Sculpture
+# Welcome to Sculptor
 
 This is a model (DTO) generation library that facilitates the interaction between reading in a schema and converting it to another languages schema.
 
