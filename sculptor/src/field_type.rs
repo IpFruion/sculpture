@@ -1,4 +1,5 @@
 //TODO: possibly function definitions?
+#[derive(Debug)]
 pub enum FieldType<'a> {
     Struct(&'a str),
     Option(Box<FieldType<'a>>),

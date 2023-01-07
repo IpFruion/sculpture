@@ -1,4 +1,0 @@
-WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
-file = _{ SOI ~ (struct)* ~ EOI}
-struct = { "pub"? ~ "struct" ~ ident ~ (";"?)}
-ident = @{ ASCII_ALPHA* }

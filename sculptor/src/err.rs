@@ -1,19 +1,15 @@
 use std::fmt::Display;
 
-//TODO: make better error
+pub trait Error {
+    fn custom<T: Display + 'static>(t: T) -> Self;
+}
+
+//TODO: Better error
 #[derive(Debug)]
-pub struct Error(String);
+pub struct SculptureError(String);
 
-impl sculpture::err::Error for Error {
-    fn custom<T: std::fmt::Display + 'static>(t: T) -> Self {
-        Self(t.to_string())
+impl Error for SculptureError {
+    fn custom<T: Display + 'static>(t: T) -> Self {
+        SculptureError(format!("{}", t))
     }
 }
-
-impl Display for Error {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.0)
-    }
-}
-
-impl std::error::Error for Error {}
