@@ -1,3 +1,4 @@
+//TODO: possibly function definitions?
 pub enum FieldType<'a> {
     Struct(&'a str),
     Option(Box<FieldType<'a>>),

@@ -3,7 +3,7 @@ use sculpture::Sculptable as OtherSculptable;
 use sculpture_derive::Sculptable;
 
 #[derive(Sculptable)]
-struct MyStruct;
+pub struct MyStruct;
 
 fn main() {
     let mut output = String::new();

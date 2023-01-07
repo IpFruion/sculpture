@@ -75,7 +75,8 @@ impl<W: Write> crate::Sculptor for Sculptor<W> {
     ) -> Result<Self::Ok, Self::Error> {
         self.write_modifier(modifier)?;
         write!(self.writer, "\t{}: ", name).map_err(Self::Error::custom)?;
-        self.write_field_type(field_type)
+        self.write_field_type(field_type)?;
+        writeln!(self.writer, ",").map_err(Self::Error::custom)
     }
 
     fn end(&mut self) -> Result<Self::Ok, Self::Error> {
