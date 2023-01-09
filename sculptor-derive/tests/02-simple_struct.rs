@@ -1,6 +1,6 @@
-use sculpture::rust;
-use sculpture::Sculptable as OtherSculptable;
-use sculpture_derive::Sculptable;
+use sculptor::mocks::MockSculptor;
+use sculptor::StructSculptable;
+use sculptor_derive::Sculptable;
 
 #[derive(Sculptable)]
 struct MyStruct {
@@ -8,8 +8,22 @@ struct MyStruct {
 }
 
 fn main() {
-    let mut output = String::new();
-    let mut sculptor = rust::Sculptor::new(&mut output);
-    MyStruct::sculpt(&mut sculptor, ()).unwrap();
-    assert_eq!("struct MyStruct{\n\tthing: String,\n}\n", output)
+    let mut sculptor = MockSculptor::default();
+    MyStruct::sculpt_struct(&mut sculptor).unwrap();
+
+    assert_eq!(sculptor.starts.len(), 1);
+    assert_eq!(
+        sculptor.starts[0],
+        (sculptor::modifier::Modifier::None, "MyStruct".to_owned())
+    );
+    assert_eq!(sculptor.fields.len(), 1);
+    assert_eq!(
+        sculptor.fields[0],
+        (
+            sculptor::modifier::Modifier::None,
+            "thing".to_owned(),
+            "String".to_owned(),
+        )
+    );
+    assert_eq!(sculptor.ends, 1);
 }

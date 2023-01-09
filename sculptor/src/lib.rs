@@ -13,11 +13,11 @@ pub trait Sculptable {
     fn sculpt<S: Sculptor>(sculptor: &mut S, input: Self::Input) -> Result<S::Ok, S::Error>;
 }
 
-pub trait StructScuptable {
+pub trait StructSculptable {
     fn sculpt_struct<S: Sculptor>(sculptor: &mut S) -> Result<S::Ok, S::Error>;
 }
 
-impl<T: Sculptable<Input = ()>> StructScuptable for T {
+impl<T: Sculptable<Input = ()>> StructSculptable for T {
     fn sculpt_struct<S: Sculptor>(sculptor: &mut S) -> Result<S::Ok, S::Error> {
         T::sculpt(sculptor, ())
     }
@@ -48,36 +48,32 @@ pub trait Sculptor {
     fn end(&mut self) -> Result<Self::Ok, Self::Error>;
 }
 
-#[cfg(test)]
-pub(crate) mod tests {
-    use crate::{err, modifier::Modifier, Sculptor};
+#[cfg(any(test, feature = "mocks"))]
+pub mod mocks {
+    use crate::{err::SculptureError, field_type::FieldType, modifier::Modifier, Sculptor};
 
     #[derive(Default)]
-    pub struct TestSculptor {
+    pub struct MockSculptor {
         pub starts: Vec<(Modifier, String)>,
         pub fields: Vec<(Modifier, String, String)>,
         pub ends: usize,
     }
 
-    impl Sculptor for TestSculptor {
+    impl Sculptor for MockSculptor {
         type Ok = ();
 
-        type Error = err::SculptureError;
+        type Error = SculptureError;
 
-        fn start(
-            &mut self,
-            modifier: crate::modifier::Modifier,
-            name: &str,
-        ) -> Result<Self::Ok, Self::Error> {
+        fn start(&mut self, modifier: Modifier, name: &str) -> Result<Self::Ok, Self::Error> {
             self.starts.push((modifier, name.to_owned()));
             Ok(())
         }
 
         fn field<'a>(
             &mut self,
-            modifier: crate::modifier::Modifier,
+            modifier: Modifier,
             name: &str,
-            field_type: crate::field_type::FieldType<'a>,
+            field_type: FieldType<'a>,
         ) -> Result<Self::Ok, Self::Error> {
             self.fields
                 .push((modifier, name.to_owned(), format!("{:?}", field_type)));

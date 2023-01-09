@@ -4,7 +4,7 @@ use std::fmt::Display;
 #[derive(Debug)]
 pub struct Error(String);
 
-impl sculpture::err::Error for Error {
+impl sculptor::err::Error for Error {
     fn custom<T: std::fmt::Display + 'static>(t: T) -> Self {
         Self(t.to_string())
     }

@@ -1,5 +1,6 @@
 WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
 file = _{ SOI ~ (outer)* ~ EOI }
+outer = { vis ~ "struct" ~ ident ~ (";" | "{" ~ (field ~ ",")* ~ "}") }
+field = { ident ~ ":" ~ ident }
 vis = {"pub"? }
-outer = { vis ~ "struct" ~ ident ~ (";"?) }
 ident = @{ ASCII_ALPHA* }

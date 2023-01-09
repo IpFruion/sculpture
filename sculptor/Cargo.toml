@@ -1,9 +1,16 @@
 [package]
-name = "sculpture"
+name = "sculptor"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 pest = "2.5.2"
 pest_derive = "2.5.2"
+
+# [[test]]
+# required-features = ["mocks"]
+
+[features]
+default = []
+mocks = []
 

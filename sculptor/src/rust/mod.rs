@@ -86,7 +86,7 @@ impl<W: Write> crate::Sculptor for Sculptor<W> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{modifier::Modifier, Sculptable, StructScuptable};
+    use crate::{modifier::Modifier, Sculptable, StructSculptable};
 
     use super::Sculptor;
 

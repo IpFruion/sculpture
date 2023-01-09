@@ -1,5 +1,5 @@
 [package]
-name = "sculpture-derive"
+name = "sculptor-derive"
 version = "0.1.0"
 edition = "2021"
 autotests = false
@@ -14,7 +14,8 @@ path = "tests/runner.rs"
 [dependencies]
 syn = "1.0.107"
 quote = "1.0.23"
-sculpture = { path = "../sculpture/" }
+sculptor = { path = "../sculptor/" }
 
 [dev-dependencies]
 trybuild = "1.0.74"
+sculptor = { path = "../sculptor/", features = ["mocks"]}
